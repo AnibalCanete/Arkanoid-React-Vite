@@ -1,68 +1,225 @@
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Dark Shades of Primary Color */
+  --clr-primary-1: hsl(205, 86%, 17%);
+  --clr-primary-2: hsl(205, 77%, 27%);
+  --clr-primary-3: hsl(205, 72%, 37%);
+  --clr-primary-4: hsl(205, 63%, 48%);
+  /* Primary Main Color */
+  --clr-primary-5: #49a6ea;
+  /* Lighter Shades of Primary Color */
+  --clr-primary-6: hsl(205, 89%, 70%);
+  --clr-primary-7: hsl(205, 90%, 76%);
+  --clr-primary-8: hsl(205, 86%, 81%);
+  --clr-primary-9: hsl(205, 90%, 88%);
+  --clr-primary-10: hsl(205, 100%, 96%);
+  /* Darkest Grey Used for Headings */
+  --clr-grey-1: hsl(209, 61%, 16%);
+  --clr-grey-2: hsl(211, 39%, 23%);
+  --clr-grey-3: hsl(209, 34%, 30%);
+  --clr-grey-4: hsl(209, 28%, 39%);
+  /* Grey Used for Paragraphs */
+  --clr-grey-5: hsl(210, 22%, 49%);
+  --clr-grey-6: hsl(209, 23%, 60%);
+  --clr-grey-7: hsl(211, 27%, 70%);
+  --clr-grey-8: hsl(210, 31%, 80%);
+  --clr-grey-9: hsl(212, 33%, 89%);
+  --clr-grey-10: hsl(210, 36%, 96%);
+  --clr-white: #fff;
+  --clr-gold: #c59d5f;
+  --clr-dark: #000;
+  --border: 4px solid #333;
+  --radius: 0.5rem;
+  --font-pixel: "Pixel", Arial, Helvetica, sans-serif;
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@font-face {
+  font-family: "Pixel";
+  src: url("./font/Pixel-LCD-7.woff") format("woff");
 }
 
-body {
+html {
+  font-size: 62.5%;
+}
+
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-pixel);
+  background-image: url("assets/images/background-main.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-y: auto;
+}
+
+#main { 
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: clamp(1.6rem, 2vw, 3.2rem);
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--radius);
+  padding: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  min-height: auto;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+canvas {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  box-sizing: border-box;
+  display: block;
+  border: 2px solid var(--clr-gold);
+  border-radius: var(--radius);
+  z-index: 1;
+  background-image: url("assets/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex: 0 0 auto;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+#display { 
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: var(--clr-primary-2);
+  box-shadow: var(--dark-shadow);
+  border-radius: var(--radius);
+  border: 2px solid var(--clr-gold);
+  overflow: hidden;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+#score, #start, #info {
+  min-width: 0; 
+  width: 100%;
+  font-size: clamp(1.2rem, 1.6vw, 2rem);
+  padding: 0.6rem 0.8rem;
+  line-height: 1.2;
+  text-align: center;
+  font-family: var(--font-pixel);
+  background-color: var(--clr-dark);
+  color: var(--clr-white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  #display { 
+    grid-template-columns: 1fr; 
+    gap: 0.6rem; 
+    padding: 0.8rem; 
   }
-  a:hover {
-    color: #747bff;
+
+  #score, #start, #info {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    padding: 0.6rem;
+    height: 4.8rem;
   }
-  button {
-    background-color: #f9f9f9;
+
+  canvas { 
+    height: clamp(360px, 52vh, 520px); 
+  }
+}
+
+/* Mid-range Mobile Devices */
+@media (min-width: 481px) and (max-width: 600px) {
+  #display {
+    grid-template-columns: 1fr; 
+    gap: 0.8rem; 
+  }
+
+  #score, #start, #info { 
+    font-size: clamp(1.3rem, 3.8vw, 1.8rem); 
+  }
+
+  canvas { 
+    height: clamp(380px, 55vh, 540px); 
+  }
+}
+
+/* Critical Range: 3 compact columns, canvas does not shrink */
+@media (min-width: 601px) and (max-width: 700px) {
+  #display { 
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 0.6rem; 
+  }
+
+  #score, #start, #info {
+    font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+    padding: 0.5rem 0.6rem;
+  }
+
+  canvas { 
+    height: clamp(420px, 58vh, 580px); 
+  }
+}
+
+/* Tablets */
+@media (min-width: 701px) and (max-width: 900px) {
+  #display { 
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 1rem; 
+  }
+
+  #score, #start, #info { 
+    font-size: clamp(1.2rem, 1.5vw, 1.8rem); 
+  }
+
+  canvas { 
+    height: clamp(440px, 60vh, 600px); 
+  }
+}
+
+/* Laptops */
+@media (min-width: 901px) and (max-width: 1200px) {
+  #display { 
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 2rem; 
+  }
+
+  #score, #start, #info { 
+    font-size: clamp(1.4rem, 1.8vw, 2.2rem); 
+  }
+
+  canvas { 
+    height: clamp(480px, 60vh, 600px); 
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1201px) {
+  #display { 
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 2.4rem; 
+  }
+
+  #score, #start, #info { 
+    font-size: clamp(1.6rem, 2vw, 2.4rem); 
   }
 }
