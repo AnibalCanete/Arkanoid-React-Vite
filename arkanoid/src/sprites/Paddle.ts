@@ -65,4 +65,16 @@ export class Paddle {
         if (e.code === "ArrowRight" || e.key === "ArrowRight") this.moveRight = true;
     };
 
+    // Touch handler: follow finger
+    handleTouchMove = (e: TouchEvent): void => {
+        const touch = e.touches[0];
+        if (!touch) return;
+        // Adjust paddle position to finger
+        this.position.x = touch.clientX - this.paddleWidth / 2;
+        // Prevent it from going off the canvas
+        if (this.position.x < 0) this.position.x = 0;
+        if (this.position.x + this.paddleWidth > window.innerWidth) {
+            this.position.x = window.innerWidth - this.paddleWidth;
+        }
+    };
 };
