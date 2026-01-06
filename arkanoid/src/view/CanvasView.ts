@@ -49,8 +49,8 @@ export class CanvasView {
         const updateFromTouch = (touch: Touch) => {
             const rect = this.canvas.getBoundingClientRect();
             const scaleX = this.canvas.width / rect.width;
-            const offsetX = (touch.clientX - rect.left) * scaleX;
-            paddle.pos.x = offsetX - paddle.width / 2;
+            const localX = (touch.pageX- rect.left) * scaleX;
+            paddle.pos.x = localX - paddle.width / 2;
             if (paddle.pos.x < 0) paddle.pos.x = 0;
             const maxX = this.canvas.width - paddle.width;
             if (paddle.pos.x > maxX) paddle.pos.x = maxX;

@@ -23,9 +23,6 @@ export class Paddle {
         // Event Listeners
         document.addEventListener("keydown", this.handleKeyDown);
         document.addEventListener("keyup", this.handleKeyUp);
-
-        document.addEventListener("touchmove", this.handleTouchMove, { passive: false });
-        document.addEventListener("touchstart", this.handleTouchMove, { passive: false });
     };
 
     // Getters
@@ -68,17 +65,4 @@ export class Paddle {
         if (e.code === "ArrowRight" || e.key === "ArrowRight") this.moveRight = true;
     };
 
-    // Touch handler: follow finger
-    handleTouchMove = (e: TouchEvent): void => {
-        const touch = e.touches[0];
-        if (!touch) return;
-        // Adjust paddle position to finger
-        this.position.x = touch.clientX - this.paddleWidth / 2;
-        // Prevent it from going off the canvas
-        const canvas = document.querySelector("#playField") as HTMLCanvasElement;
-        if (this.position.x < 0) this.position.x = 0;
-        if (this.position.x + this.paddleWidth > canvas.width) {
-            this.position.x = canvas.width - this.paddleWidth;
-        }
-    };
 };
