@@ -49,7 +49,10 @@ export class CanvasView {
         this.canvas.addEventListener("touchmove", (e) => {
             const touch = e.touches[0];
             if (!touch) return;
-            paddle.pos.x = touch.clientX - paddle.width / 2;
+            // Calculate position relative to the canvas
+            const rect = this.canvas.getBoundingClientRect();
+            const offsetX = touch.clientX - rect.left;
+            paddle.pos.x = offsetX - paddle.width / 2;
             // Limit within the canvas
             if (paddle.pos.x < 0) paddle.pos.x = 0;
             if (paddle.pos.x + paddle.width > this.canvas.width) {
