@@ -5,6 +5,9 @@ It combines retro arcade aesthetics with a modern web architecture, optimized fo
 
 ---
 
+## 👉 Live Demo
+https://arkanoid-react-vite.netlify.app/
+
 ## 🚀 Key Features
 - ⚡ Modern frontend powered by React + Vite for fast and efficient development.
 - 🎨 Retro arcade aesthetics with custom sprites and pixelated typography.
