@@ -1,6 +1,6 @@
 
 import { Brick } from "../sprites/Brick";
-import { BRICK_ENERGY, BRICK_HEIGHT, BRICK_IMAGES, BRICK_PADDING, BRICK_WIDTH, STAGE_COLS, STAGE_PADDING, LEVEL, STAGE_ROWS } from "./setup";
+import { BRICK_ENERGY, BRICK_IMAGES, BRICK_PADDING, STAGE_COLS, STAGE_PADDING, LEVEL, STAGE_ROWS } from "./setup";
 
 
 export function createBricks(canvas: HTMLCanvasElement): Brick[] {

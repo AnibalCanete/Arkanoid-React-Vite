@@ -9,7 +9,7 @@ import "./App.css";
 import PADDLE_IMAGE from "./assets/images/paddle.png";
 import BALL_IMAGE from "./assets/images/ball.png";
 // Level and Colors
-import { PADDLE_SPEED, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_STARTX, BALL_SPEED, BALL_SIZE, BALL_STARTX, BALL_STARTY } from "./core/setup";
+import { PADDLE_SPEED, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_SPEED, BALL_SIZE, BALL_STARTX, BALL_STARTY } from "./core/setup";
 // Helpers
 import { createBricks } from "./core/helpers";
 import { useEffect, useRef } from "react"; 
