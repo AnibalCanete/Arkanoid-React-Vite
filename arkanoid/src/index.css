@@ -88,6 +88,11 @@ canvas {
   background-position: center;
   background-repeat: no-repeat;
   flex: 0 0 auto;
+  touch-action: none;
+}
+
+body, canvas, #display {
+  user-select: none;
 }
 
 #display { 

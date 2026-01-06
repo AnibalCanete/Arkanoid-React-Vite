@@ -73,6 +73,8 @@ function App() {
     const ball = new Ball(BALL_SPEED, BALL_SIZE, { x: BALL_STARTX, y: BALL_STARTY }, BALL_IMAGE);
     // Create a Paddle
     const paddle = new Paddle(PADDLE_SPEED, PADDLE_WIDTH, PADDLE_HEIGHT, { x: PADDLE_STARTX, y: view.canvas.height - PADDLE_HEIGHT -5 }, PADDLE_IMAGE);
+    // Initialize touch controls
+    view.initTouchControls(paddle);
 
     gameLoop(view, bricks, paddle, ball, collision);
   };

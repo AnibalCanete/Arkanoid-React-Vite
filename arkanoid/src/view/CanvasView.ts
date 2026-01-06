@@ -44,4 +44,23 @@ export class CanvasView {
     drawBricks(bricks: Brick[]): void {
         bricks.forEach(brick => this.drawSprite(brick));
     };
+
+    initTouchControls(paddle: Paddle): void {
+        this.canvas.addEventListener("touchmove", (e) => {
+            const touch = e.touches[0];
+            if (!touch) return;
+            paddle.pos.x = touch.clientX - paddle.width / 2;
+            // Limit within the canvas
+            if (paddle.pos.x < 0) paddle.pos.x = 0;
+            if (paddle.pos.x + paddle.width > this.canvas.width) {
+                paddle.pos.x = this.canvas.width - paddle.width;
+            }
+        }, { passive: false });
+
+        this.canvas.addEventListener("touchstart", (e) => {
+            const touch = e.touches[0];
+            if (!touch) return;
+            paddle.pos.x = touch.clientX - paddle.width / 2;
+        }, { passive: false });
+    };
 };
