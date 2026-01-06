@@ -78,8 +78,10 @@ canvas {
   width: 100%;
   height: auto;
   max-height: 600px;
-  box-sizing: border-box;
   display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   border: 2px solid var(--clr-gold);
   border-radius: var(--radius);
   z-index: 1;

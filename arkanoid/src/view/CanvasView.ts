@@ -46,24 +46,28 @@ export class CanvasView {
     };
 
     initTouchControls(paddle: Paddle): void {
+        const updateFromTouch = (touch: Touch) => {
+            const rect = this.canvas.getBoundingClientRect();
+            const scaleX = this.canvas.width / rect.width;
+            const offsetX = (touch.clientX - rect.left) * scaleX;
+            paddle.pos.x = offsetX - paddle.width / 2;
+            if (paddle.pos.x < 0) paddle.pos.x = 0;
+            const maxX = this.canvas.width - paddle.width;
+            if (paddle.pos.x > maxX) paddle.pos.x = maxX;
+        };
+
         this.canvas.addEventListener("touchmove", (e) => {
             const touch = e.touches[0];
             if (!touch) return;
-            // Calculate position relative to the canvas
-            const rect = this.canvas.getBoundingClientRect();
-            const offsetX = touch.clientX - rect.left;
-            paddle.pos.x = offsetX - paddle.width / 2;
-            // Limit within the canvas
-            if (paddle.pos.x < 0) paddle.pos.x = 0;
-            if (paddle.pos.x + paddle.width > this.canvas.width) {
-                paddle.pos.x = this.canvas.width - paddle.width;
-            }
+            e.preventDefault();
+            updateFromTouch(touch);
         }, { passive: false });
 
         this.canvas.addEventListener("touchstart", (e) => {
             const touch = e.touches[0];
             if (!touch) return;
-            paddle.pos.x = touch.clientX - paddle.width / 2;
+            e.preventDefault();
+            updateFromTouch(touch);
         }, { passive: false });
     };
 };
